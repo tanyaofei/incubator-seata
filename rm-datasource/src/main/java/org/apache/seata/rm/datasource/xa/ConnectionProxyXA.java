@@ -307,6 +307,7 @@ public class ConnectionProxyXA extends AbstractConnectionProxyXA implements Hold
 
     @Override
     public synchronized void close() throws SQLException {
+        xaEnded = false;
         rollBacked = false;
         if (isHeld() && shouldBeHeld()) {
             // if kept by a keeper, just hold the connection.
